@@ -2,3 +2,4 @@ aiogram
 SQLAlchemy
 aiomysql
 python-dotenv
+alembic

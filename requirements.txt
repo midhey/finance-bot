@@ -1,5 +1,8 @@
 aiogram
+python-dotenv
 SQLAlchemy
 aiomysql
-python-dotenv
+cryptography
 alembic
+pytest
+pytest-asyncio

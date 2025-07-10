@@ -5,6 +5,8 @@ services:
     restart: always
     env_file:
       - .env
+    environment:
+      - PYTHONPATH=/app
     depends_on:
       - db
     volumes:

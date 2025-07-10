@@ -7,11 +7,12 @@ services:
       - .env
     environment:
       - PYTHONPATH=/app
-    depends_on:
-      - db
     volumes:
       - .:/app
     command: python app/bot.py
+    depends_on:
+      - db
+      - redis
 
   db:
     image: mysql:8.0
@@ -27,5 +28,15 @@ services:
     volumes:
       - mysql_data:/var/lib/mysql
 
+  redis:
+    image: redis:latest
+    container_name: finance-redis
+    ports:
+      - 6379:6379
+    volumes:
+      - redis_data:/data
+    command: ["redis-server", "--appendonly", "yes"]
+
 volumes:
   mysql_data:
+  redis_data:

@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from .base import DBConfig, BotConfig, Config
+from .base import DBConfig, BotConfig, RedisConfig, Config
 
 load_dotenv()
 
@@ -22,5 +22,9 @@ def load_config() -> Config:
             name=require_env("DB_NAME"),
             user=require_env("DB_USER"),
             password=require_env("DB_PASSWORD"),
+        ),
+        redis=RedisConfig(
+            host=require_env("REDIS_HOST"),
+            port=int(require_env("REDIS_PORT")),
         ),
     )

@@ -17,6 +17,13 @@ class BotConfig:
 
 
 @dataclass
+class RedisConfig:
+    host: str
+    port: int
+
+
+@dataclass
 class Config:
     bot: BotConfig
     db: DBConfig
+    redis: RedisConfig

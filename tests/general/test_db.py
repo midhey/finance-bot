@@ -1,6 +1,6 @@
 import pytest
 from sqlalchemy import text
-from app.db import async_session
+from app.general.db import async_session
 
 
 @pytest.mark.asyncio

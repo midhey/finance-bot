@@ -6,7 +6,7 @@ from logging.config import fileConfig
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from alembic import context
-from app.db import engine
+from app.general.db import engine
 from app.models import Base
 
 config = context.config

@@ -13,15 +13,22 @@ class GroupUserRepository:
         await self.session.flush()
         return user
 
-    async def remove_user(self, user_id) -> bool:
+    async def remove_user(self, user_id, group_id) -> bool:
         result = await self.session.execute(
-            delete(GroupUser).where(GroupUser.user_id == user_id)
+            delete(GroupUser).where(
+                GroupUser.user_id == user_id, GroupUser.group_id == group_id
+            )
         )
         return result.rowcount > 0
 
-    async def get_user_group(self, user_id) -> int | None:
+    async def get_user_groups(self, user_id) -> list[int]:
         result = await self.session.execute(
             select(GroupUser.group_id).where(GroupUser.user_id == user_id)
         )
-        row = result.first()
-        return row[0] if row else None
+        return [row[0] for row in result.fetchall()]
+
+    async def get_group_users(self, group_id) -> list[int]:
+        result = await self.session.execute(
+            select(GroupUser.user_id).where(GroupUser.group_id == group_id)
+        )
+        return [row[0] for row in result.fetchall()]

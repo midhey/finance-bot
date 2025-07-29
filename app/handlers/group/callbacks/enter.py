@@ -35,7 +35,7 @@ async def cb_select_group(
 
     await state.update_data(current_group=group_id)
 
-    await query.message.answer(
+    await query.message.edit_text(
         f"Вы выбрали группу «{group.name}». Вот ваше финансовое меню:",
         reply_markup=main_finance_keyboard(),
     )

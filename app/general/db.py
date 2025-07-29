@@ -4,14 +4,11 @@ from sqlalchemy.ext.asyncio import (
     async_sessionmaker,
     AsyncSession,
 )
-from app.config import load_config
-
-
-config = load_config()
+from app.config import settings
 
 DATABASE_URL = (
-    f"mysql+aiomysql://{config.db.user}:{config.db.password}"
-    f"@{config.db.host}:{config.db.port}/{config.db.name}"
+    f"mysql+aiomysql://{settings.DB_USER}:{settings.DB_PASSWORD}"
+    f"@{settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}"
 )
 
 

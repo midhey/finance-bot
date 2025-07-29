@@ -48,3 +48,12 @@ class GroupService:
 
     async def get_group_users(self, group_id) -> list[int]:
         return await self.group_user_repository.get_group_users(group_id)
+
+    async def get_user_group_objects(self, user_id: int) -> list[Group]:
+        ids = await self.get_user_groups(user_id)
+        result = []
+        for group_id in ids:
+            group = await self.group_repository.get_by_id(group_id)
+            if group:
+                result.append(group)
+        return result

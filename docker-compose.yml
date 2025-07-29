@@ -9,7 +9,8 @@ services:
       - PYTHONPATH=/app
     volumes:
       - .:/app
-    command: python app/bot.py
+    ports:
+      - "8080:8080"
     depends_on:
       - db
       - redis

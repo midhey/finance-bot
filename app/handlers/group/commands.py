@@ -1,6 +1,7 @@
 from aiogram import Router
 from aiogram.filters.command import Command
 from aiogram.types import Message
+from aiogram.fsm.context import FSMContext
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.services.group import GroupService
@@ -10,10 +11,8 @@ router = Router()
 
 
 @router.message(Command("start"))
-async def cmd_start(
-    message: Message,
-    session: AsyncSession,
-):
+async def cmd_start(message: Message, session: AsyncSession, state: FSMContext):
+    await state.clear()
     service = GroupService(session)
     user_id = message.from_user.id
     groups = await service.get_user_group_objects(user_id)

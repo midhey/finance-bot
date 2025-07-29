@@ -24,13 +24,15 @@ def group_action_keyboard(group: Group) -> InlineKeyboardMarkup:
     """
     builder = InlineKeyboardBuilder()
     builder.row(
+        InlineKeyboardButton(text="⬅️ Назад", callback_data="group:back"),
         InlineKeyboardButton(
             text="📨 Пригласить", callback_data=f"group:invite:{group.id}"
-        )
+        ),
     )
     builder.row(
+        InlineKeyboardButton(text="🔄 Сменить", callback_data="group:change"),
         InlineKeyboardButton(
-            text="🚪 Покинуть группу", callback_data=f"group:leave:{group.id}"
-        )
+            text="🚪 Покинуть", callback_data=f"group:leave:{group.id}"
+        ),
     )
     return builder.as_markup()
